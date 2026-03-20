@@ -16,8 +16,8 @@ Retail traders and individual investors lack access to affordable, transparent, 
 **FinLens** fills this gap:
 
 - Combines **three independent AI models** operating on different data types into a unified recommendation.
-- Implements a **transparent late fusion decision engine** — every recommendation shows exactly how each model contributed.
-- Accessible through a **standard web browser** — no special hardware or software required.
+- Implements a **transparent late fusion decision engine** every recommendation shows exactly how each model contributed.
+- Accessible through a **standard web browser** no special hardware or software required.
 
 ⚡ **Impact:** Turns multi-signal financial analysis that was previously only available to institutional investors into a free, explainable, web-based tool for everyday traders.
 
@@ -74,7 +74,7 @@ score = ((P_buy − P_sell) × (1 − P_hold) + 1) / 2
 ## 📂 Repo Structure
 ```
 FINLENS/
-├── index.html              # Frontend UI
+├── index.html              
 ├── assets/
 │   ├── css/
 │   │   └── styles.css
@@ -120,6 +120,8 @@ uvicorn app:app --reload
 
 Then open `http://127.0.0.1:8000` in your browser.
 
+> 💡 **First run tip:** The first request may take 30–60 seconds as FinBERT downloads its weights from Hugging Face. Subsequent requests will be faster as models are cached in memory.
+
 ## 🧪 Testing
 
 Make sure uvicorn is running first, then in a second terminal:
@@ -162,42 +164,3 @@ Backtesting conducted over December 2022 – December 2025 across 16 tickers (AA
 - Retrain CNN on a more diverse multi-asset candlestick dataset
 - Add historical prediction log to track past recommendations vs actual price movements
 - Push notifications and mobile support
-
-- ## ⚡ Quick Start — Download & Run Locally
-
-### Step 1 — Clone the repo
-```bash
-git clone https://github.com/bewww831/FINLENS.git
-cd finlens
-```
-
-### Step 2 — Create a virtual environment
-```bash
-python -m venv .venv
-
-# Windows
-.venv\Scripts\activate
-
-# Mac/Linux
-source .venv/bin/activate
-```
-
-### Step 3 — Install dependencies
-```bash
-pip install -r requirements.txt
-```
-
-### Step 4 — Start the server
-```bash
-cd backend
-uvicorn app:app --reload --port 8000
-```
-
-### Step 5 — Open in your browser
-```
-http://127.0.0.1:8000
-```
-
-That's it! FinLens is now running locally. Enter any stock ticker (e.g. `AAPL`, `TSLA`, `NVDA`) and click **Analyse** to get a recommendation.
-
-> 💡 **First run tip:** The first request may take 30–60 seconds as FinBERT downloads its weights from Hugging Face. Subsequent requests will be faster as models are cached in memory.
