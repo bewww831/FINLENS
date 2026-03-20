@@ -167,7 +167,7 @@ Backtesting conducted over December 2022 – December 2025 across 16 tickers (AA
 
 ### Step 1 — Clone the repo
 ```bash
-git clone https://github.com/yourusername/finlens.git
+git clone https://github.com/bewww831/FINLENS.git
 cd finlens
 ```
 
