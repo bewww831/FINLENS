@@ -12,4 +12,3 @@ joblib
 torchvision
 scikit-learn
 xgboost
-torchvision

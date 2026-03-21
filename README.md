@@ -92,6 +92,7 @@ FINLENS/
     ├── decision.py         # Late fusion engine
     ├── features.py         # Feature engineering 
     ├── test.py             # API tests
+    ├── requirements.txt
     └── trained/
         ├── xgboost.pkl
         └── cnn.pt
