@@ -6,11 +6,11 @@ from PIL import Image
 
 BASE_DIR = os.path.dirname(__file__)
 CNN_PATH = os.path.join(BASE_DIR, "trained", "cnn.pt")
-DEVICE   = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 
 cnn_model = resnet18(pretrained=False)
 cnn_model.fc = nn.Linear(512, 3)
-cnn_model.load_state_dict(torch.load(CNN_PATH, map_location=DEVICE))
+cnn_model.load_state_dict(torch.load(CNN_PATH, map_location=DEVICE, weights_only=True))
 cnn_model = cnn_model.to(DEVICE).eval()
 
 cnn_transform = transforms.Compose([

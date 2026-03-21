@@ -11,7 +11,7 @@ finbert_pipe = pipeline(
     "text-classification",
     model=ft_model,
     tokenizer=ft_tokenizer,
-    device=0 if torch.cuda.is_available() else -1,
+    device="mps" if torch.backends.mps.is_available() else (0 if torch.cuda.is_available() else -1),
     truncation=True,
     max_length=512,
     top_k=None
