@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="assets/finlens.png" alt="FinLens Logo" width="200"/>
+</div>
+
 # FinLens: A Multi-Modal AI Financial Advisory
 
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688?logo=fastapi)](https://fastapi.tiangolo.com/)
@@ -54,6 +58,10 @@ score = ((P_buy − P_sell) × (1 − P_hold) + 1) / 2
 - **Backend:** FastAPI + Uvicorn
 - **AI Models:** XGBoost, Fine-tuned FinBERT, ResNet-18 (PyTorch)
 - **Data Source:** yfinance (price data, market context, news headlines)
+
+### System Architecture Diagram
+
+![FinLens System Architecture](assets/architecture.png)
 
 ### AI Workflow
 ```
@@ -139,11 +147,47 @@ Expected output:
 ```
 Running tests... (ensure uvicorn is running)
 
+── Health ──
 [PASS] Health check
-[PASS] Predict AAPL recommendation: HOLD
+[PASS] Health response time: 0.002s
+[PASS] Health lists all three models
+
+── Predict — Valid ──
+[PASS] Predict AAPL recommendation: SELL
+[PASS] Predict response time: 0.8s
+[PASS] Response structure complete — all keys present
+
+── Predict — Edge Cases ──
 [PASS] Invalid ticker handled gracefully
-[PASS] Decision scores valid final: 0.44969
+[PASS] Lowercase ticker normalised correctly
+[PASS] Ticker with surrounding spaces handled correctly
+[PASS] Empty ticker handled gracefully
+
+── Probability Distributions ──
+[PASS] XGBoost probabilities sum to ~1.0 (1.00000)
+[PASS] FinBERT probabilities sum to ~1.0 (0.99999)
+[PASS] CNN probabilities sum to ~1.0 (0.99999)
+
+── Decision Engine ──
+[PASS] Decision scores valid final: 0.28917
+[PASS] All scores and contributions within valid ranges
+[PASS] Decision explanation and emoji present
+
+── Sentiment Articles ──
 [PASS] Sentiment articles valid: 5 articles returned
+[PASS] Sentiment articles all contain url field
+
+── Prices Endpoint ──
+[PASS] Prices endpoint returned 16 tickers
+[PASS] Prices structure valid for all 16 tickers
+
+── Multiple Tickers ──
+[PASS] Predict MSFT: HOLD
+[PASS] Predict TSLA: HOLD
+[PASS] Predict NVDA: HOLD
+
+21 passed, 0 failed
+[PASS] All tests passed
 ```
 
 ## Evaluation Results
